@@ -1,52 +1,64 @@
-:root {
-    --glass: rgba(255, 255, 255, 0.2);
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    margin: 0;
-    font-family: 'Pretendard', sans-serif;
-    transition: background 0.5s ease;
+    font-family: 'Montserrat', sans-serif;
+    height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    transition: 1s ease-in-out; /* 배경 바뀔 때 부드럽게 */
     color: white;
 }
 
-/* 테마 정의 */
+/* 배경 */
 body.theme-1 { background: linear-gradient(45deg, #EBFBBF 0%, #EDFFE4 99%, #0B6D4B 100%); }
 body.theme-2 { background: linear-gradient(to top, #79C975 0%, #EBFBBF 100%); }
 body.theme-3 { background: linear-gradient(to right, #EDFFE4 0%, #79C975 100%); }
 
-#app {
-    background: var(--glass);
-    backdrop-filter: blur(10px);
-    padding: 2rem;
-    border-radius: 20px;
+.glass-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 50px;
+    border-radius: 40px;
     text-align: center;
     width: 90%;
-    max-width: 400px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    max-width: 500px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
 }
 
-nav { margin-bottom: 20px; }
-nav button {
-    background: none;
-    border: 1px solid white;
-    color: white;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 5px;
+.mode-selector button {
+    background: none; border: none; color: rgba(255,255,255,0.6);
+    margin: 0 10px; cursor: pointer; font-size: 0.9rem; font-weight: 700;
+}
+.mode-selector button.active { color: white; text-decoration: underline; text-underline-offset: 8px; }
+
+.timer-main h1 {
+    font-size: 8rem; /* 숫자를 아주 크게 */
+    font-weight: 200;
+    margin: 30px 0;
+    letter-spacing: -5px;
 }
 
-.timer-display h1 { font-size: 5rem; margin: 10px 0; }
-.controls button {
-    padding: 10px 25px;
-    font-size: 1.2rem;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
+#start-btn {
+    background: white; color: black; border: none;
+    padding: 15px 60px; border-radius: 12px;
+    font-weight: 700; cursor: pointer; transition: 0.3s;
+}
+#start-btn:hover { transform: scale(1.05); }
+
+#reset-btn {
+    background: none; border: 1px solid white; color: white;
+    padding: 15px 30px; border-radius: 12px; margin-left: 10px; cursor: pointer;
 }
 
+.bottom-nav { position: absolute; bottom: 30px; display: flex; gap: 20px; }
+.bottom-nav button { background: rgba(0,0,0,0.3); color: white; border: none; padding: 10px 20px; border-radius: 30px; cursor: pointer; backdrop-filter: blur(5px); }
+
+/* 모달 스타일 */
+.overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.75); display: flex; justify-content: center; align-items: center; z-index: 100; }
+.modal { background: #1a1a1a; padding: 30px; border-radius: 20px; width: 90%; max-width: 500px; }
 .hidden { display: none; }
-canvas { margin-top: 20px; max-width: 100%; }
