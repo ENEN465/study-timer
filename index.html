@@ -3,43 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>clover timer🍀</title>
+    <title>Wish_You_Luck🍀</title>
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> </head>
-<body class="theme-1">
-    <div id="app">
-        <nav>
-            <button onclick="showSection('timer')">TIMER</button>
-            <button onclick="showSection('stats')">RECORD</button>
-            <button onclick="toggleTheme()">BACKGROUND</button>
-        </nav>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-1">
+    <div class="glass-container">
+        <div class="mode-selector">
+            <button onclick="changeMode(25, 'Pomodoro', this)" class="active">Pomodoro</button>
+            <button onclick="changeMode(5, 'Short Break', this)">Short Break</button>
+            <button onclick="changeMode(15, 'Long Break', this)">Long Break</button>
+        </div>
 
-        <section id="timer-section">
-            <div class="timer-display">
-                <h1 id="time">25:00</h1>
-                <p id="status">STUDYING...</p>
-            </div>
-            <div class="controls">
-                <button id="start-btn">시작</button>
-                <button id="reset-btn">초기화</button>
-            </div>
-        </section>
+        <div class="timer-main">
+            <h1 id="timer-display">25:00</h1>
+        </div>
 
-        <section id="stats-section" class="hidden">
-            <h2>학습 통계</h2>
-            <canvas id="statsChart"></canvas>
-            <div id="total-info">
-                <p>총 집중 시간: <span id="total-time">0</span>분</p>
-            </div>
-        </section>
+        <div class="main-controls">
+            <button id="start-btn">START</button>
+            <button id="reset-btn">RESET</button>
+        </div>
+    </div>
+
+    <div class="bottom-nav">
+        <button onclick="nextBackground()">Background</button>
+        <button onclick="toggleStats()">Record</button>
+    </div>
+
+    <div id="stats-overlay" class="overlay hidden" onclick="toggleStats()">
+        <div class="modal" onclick="event.stopPropagation()">
+            <h2>Study Statistics</h2>
+            <canvas id="myChart"></canvas>
+            <button onclick="toggleStats()" class="close-btn">닫기</button>
+        </div>
     </div>
 
     <script src="script.js"></script>
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js');
-        }
-    </script>
 </body>
 </html>
