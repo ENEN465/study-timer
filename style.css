@@ -33,7 +33,7 @@
 
 /* 기본 배경 및 폰트 */
 body {
-    margin: 0; font-family: 'Pretendard', sans-serif;
+    margin: 0; font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
     height: 100vh; display: flex; justify-content: center; align-items: center;
     background-size: cover; background-position: center; transition: 0.5s; color: white;
     overflow: hidden;
@@ -206,6 +206,7 @@ body.bg-4 { background-image: url('https://images.unsplash.com/photo-14735800443
     width: 100%; padding: 15px; border-radius: 15px; border: none;
     background: white; color: black; font-weight: 700; cursor: pointer; margin-top: 10px;
 }
+
 
 
 
