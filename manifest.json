@@ -7,13 +7,20 @@
   "theme_color": "#79C975",
   "icons": [
     {
-      "src": "icon.png",
+      "src": "https://cdn-icons-png.flaticon.com/512/3125/3125848.png",
       "sizes": "512x512",
-      "type": "image/png"
-      "purpose": "maskable"
+      "type": "image/png",
+      "purpose": "any" 
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3125/3125848.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable" 
     }
   ]
 }
+
 
 
 
