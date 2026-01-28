@@ -73,7 +73,6 @@ body.bg-3 { background-image: url('https://images.unsplash.com/photo-14419742315
 /* 마우스를 올렸을 때 (Hover) */
 .flocus-btn:hover {
     background: rgba(255, 255, 255, 0.25);
-    transform: translateY(-2px); /* 살짝 떠오르는 효과 */
     border-color: rgba(255, 255, 255, 0.5);
 }
 
@@ -85,7 +84,7 @@ body.bg-3 { background-image: url('https://images.unsplash.com/photo-14419742315
 /* 보조 버튼 (RESET 등) - 조금 더 차분하게 */
 .flocus-btn.secondary {
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(134, 204, 135, 0.2);
     color: rgba(255, 255, 255, 0.6);
 }
 
@@ -94,4 +93,5 @@ body.bg-3 { background-image: url('https://images.unsplash.com/photo-14419742315
     border-color: rgba(255, 255, 255, 0.4);
 }
 .switch-label { cursor: pointer; display: flex; align-items: center; gap: 10px; }
+
 
