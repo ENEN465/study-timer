@@ -4,7 +4,7 @@ let currentMode = 'FOCUS';
 let settings = {
     focusTime: 25,
     breakTime: 5,
-    autoStart: false,
+    autoStart: true,
     font: "'Montserrat', sans-serif"
 };
 let timeLeft = settings.focusTime * 60;
@@ -147,6 +147,7 @@ if ('serviceWorker' in navigator) {
       .catch(err => console.log('등록 실패', err));
   });
 }
+
 
 
 
