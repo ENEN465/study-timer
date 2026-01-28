@@ -141,11 +141,13 @@ document.getElementById('reset-btn').addEventListener('click', () => {
 });
 
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js')
-    .then(() => console.log("서비스 워커가 준비되었습니다."))
-    .catch((err) => console.log("서비스 워커 에러:", err));
+  window.addEventListener('load', () => {
+    // './sw.js'가 아니라 'sw.js'로 호출하여 상대 경로 이슈를 방지합니다.
+    navigator.serviceWorker.register('sw.js')
+      .then(reg => console.log('서비스 워커 등록 성공! 범위:', reg.scope))
+      .catch(err => console.log('서비스 워커 등록 실패:', err));
+  });
 }
-
 
 
 
