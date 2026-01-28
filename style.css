@@ -11,9 +11,9 @@
     font-display: swap;
 }
 @font-face {
-    font-family: 'KblJumpExtended';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-5@1.0/KBLJump_EB_ExtendedTTF.woff2') format('woff2');
-    font-weight: normal;
+    font-family: 'GMarketSans';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: 500;
     font-display: swap;
 }
 
@@ -206,6 +206,7 @@ body.bg-4 { background-image: url('https://images.unsplash.com/photo-14735800443
     width: 100%; padding: 15px; border-radius: 15px; border: none;
     background: white; color: black; font-weight: 700; cursor: pointer; margin-top: 10px;
 }
+
 
 
 
