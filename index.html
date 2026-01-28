@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wish_You_Luck🍀</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍀</text></svg>">
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700&family=Noto+Sans+KR:wght@100;400&family=Gowun+Batang&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍀</text></svg>">
 </head>
-<body class="bg-1">
-    <button id="open-settings" onclick="toggleSettings(true)">⚙️Settings</button>
+<body class="bg-1" id="body-bg">
+    <button id="open-settings" onclick="toggleSettings(true)">⚙️ Settings</button>
 
     <div class="glass-container">
         <div class="mode-display" id="current-mode">FOCUS</div>
@@ -19,9 +19,9 @@
             <h1 id="timer-display">25:00</h1>
         </div>
         <div class="main-controls">
-    <button id="start-btn" class="flocus-btn">START</button>
-    <button id="reset-btn" class="flocus-btn secondary">RESET</button>
-</div>
+            <button id="start-btn" class="flocus-btn">START</button>
+            <button id="reset-btn" class="flocus-btn secondary">RESET</button>
+        </div>
     </div>
 
     <div id="settings-modal" class="modal-overlay hidden">
@@ -30,35 +30,61 @@
                 <h2>Settings</h2>
                 <button class="close-btn" onclick="toggleSettings(false)">&times;</button>
             </div>
+
+            <div class="tab-menu">
+                <button class="tab-btn active" onclick="openTab('general')">일반</button>
+                <button class="tab-btn" onclick="openTab('theme')">테마</button>
+                <button class="tab-btn" onclick="openTab('stats')">통계</button>
+            </div>
             
             <div class="modal-body">
-                <div class="setting-group">
-                    <h3>🕐 시간 설정 (분)</h3>
-                    <div class="input-grid">
-                        <label>집중: <input type="number" id="focus-input" value="25"></label>
-                        <label>휴식: <input type="number" id="break-input" value="5"></label>
+                <div id="general" class="tab-content">
+                    <div class="setting-group">
+                        <h3>🕐 시간 설정 (분)</h3>
+                        <div class="input-grid">
+                            <label>집중: <input type="number" id="focus-input" value="25"></label>
+                            <label>휴식: <input type="number" id="break-input" value="5"></label>
+                        </div>
+                    </div>
+                    <div class="setting-group">
+                        <h3>⚙️ 기타 옵션</h3>
+                        <label class="switch-label">
+                            <input type="checkbox" id="auto-start-toggle"> 다음 세션 자동 시작
+                        </label>
                     </div>
                 </div>
 
-                <div class="setting-group">
-                    <h3>🖼 배경 테마</h3>
-                    <div class="theme-buttons">
-                        <button onclick="changeBg(1)">새벽</button>
-                        <button onclick="changeBg(2)">밤하늘</button>
-                        <button onclick="changeBg(3)">숲속</button>
+                <div id="theme" class="tab-content hidden">
+                    <div class="setting-group">
+                        <h3>🖼 배경 변경</h3>
+                        <div class="theme-buttons">
+                            <button onclick="changeBg('bg-1')">새벽</button>
+                            <button onclick="changeBg('bg-2')">밤하늘</button>
+                            <button onclick="changeBg('bg-3')">숲속</button>
+                        </div>
+                        <p style="margin: 10px 0 5px; font-size: 0.8rem; color: #aaa;">내 이미지 업로드 (new)</p>
+                        <input type="file" id="bg-upload" accept="image/*" onchange="uploadBg(this)">
+                    </div>
+                    <div class="setting-group">
+                        <h3>✒️ 타이머 폰트 변경 (new)</h3>
+                        <select id="font-select" onchange="changeFont(this.value)">
+                            <option value="'Montserrat', sans-serif">기본 (Montserrat)</option>
+                            <option value="'Noto Sans KR', sans-serif">고딕 (Noto Sans)</option>
+                            <option value="'Gowun Batang', serif">명조 (고운바탕)</option>
+                            <option value="'Nanum Pen Script', cursive">손글씨 (나눔펜)</option>
+                        </select>
                     </div>
                 </div>
 
-                <div class="setting-group">
-                    <h3>⚙️ 기타 옵션</h3>
-                    <label class="switch-label">
-                        <input type="checkbox" id="auto-start-toggle"> 다음 세션 자동 시작
-                    </label>
-                </div>
-
-                <div class="setting-group">
-                    <h3>📊 학습 통계 (최근 7일)</h3>
-                    <canvas id="statsChart"></canvas>
+                <div id="stats" class="tab-content hidden">
+                    <div class="setting-group">
+                        <h3>📍 오늘 총 학습 시간 (new)</h3>
+                        <p id="today-total-display" style="font-size: 1.5rem; font-weight: 700;">0분</p>
+                    </div>
+                    <div class="setting-group">
+                        <h3>📊 최근 7일 학습 통계</h3>
+                        <canvas id="statsChart"></canvas>
+                    </div>
                 </div>
             </div>
             <button class="save-btn" onclick="saveSettings()">저장 및 적용</button>
@@ -68,5 +94,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
-
