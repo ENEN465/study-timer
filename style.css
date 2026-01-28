@@ -71,9 +71,12 @@ body.bg-4 { background-image: url('https://images.unsplash.com/photo-14735800443
     margin: 0;
     padding: 0;
     display: inline-block;
+    height: 200px;
+    margin: 10px 0;
     width: 450px;      /* 폰트가 바뀌어도 이 너비 안에 갇히게 됨 */
     text-align: center; /* 고정된 너비 안에서 정가운데 배치 */
     font-variant-numeric: tabular-nums; /* 숫자 폭을 일정하게 고정 */
+    vertical-align: middle;
 }
 /* Flocus 스타일 버튼 */
 .main-controls { margin-top: 40px; display: flex; justify-content: center; gap: 20px; }
@@ -223,6 +226,7 @@ body.bg-4 { background-image: url('https://images.unsplash.com/photo-14735800443
     width: 100%; padding: 15px; border-radius: 15px; border: none;
     background: white; color: black; font-weight: 700; cursor: pointer; margin-top: 10px;
 }
+
 
 
 
