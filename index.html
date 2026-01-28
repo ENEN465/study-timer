@@ -25,72 +25,81 @@
     </div>
 
     <div id="settings-modal" class="modal-overlay hidden">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Settings</h2>
-                <button class="close-btn" onclick="toggleSettings(false)">&times;</button>
-            </div>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Settings</h2>
+            <button class="close-top-btn" onclick="toggleSettings(false)">&times;</button>
+        </div>
 
-            <div class="tab-menu">
-                <button class="tab-btn active" onclick="openTab('general')">일반</button>
-                <button class="tab-btn" onclick="openTab('theme')">테마</button>
-                <button class="tab-btn" onclick="openTab('stats')">통계</button>
-            </div>
-            
-            <div class="modal-body">
-                <div id="general" class="tab-content">
-                    <div class="setting-group">
-                        <h3>🕐 시간 설정 (분)</h3>
-                        <div class="input-grid">
-                            <label>집중: <input type="number" id="focus-input" value="25"></label>
-                            <label>휴식: <input type="number" id="break-input" value="5"></label>
+        <div class="tab-menu">
+            <button class="tab-btn active" onclick="openTab('general')">일반</button>
+            <button class="tab-btn" onclick="openTab('theme')">테마</button>
+            <button class="tab-btn" onclick="openTab('stats')">통계</button>
+        </div>
+        
+        <div class="modal-body">
+            <div id="general" class="tab-content">
+                <div class="setting-group">
+                    <h3>🕐 시간 설정 (분)</h3>
+                    <div class="input-stack">
+                        <div class="input-item">
+                            <label for="focus-input">집중</label>
+                            <input type="number" id="focus-input" value="25">
+                        </div>
+                        <div class="input-item">
+                            <label for="break-input">휴식</label>
+                            <input type="number" id="break-input" value="5">
                         </div>
                     </div>
-                    <div class="setting-group">
-                        <h3>⚙️ 기타 옵션</h3>
-                        <label class="switch-label">
-                            <input type="checkbox" id="auto-start-toggle"> 다음 세션 자동 시작
-                        </label>
-                    </div>
                 </div>
-
-                <div id="theme" class="tab-content hidden">
-                    <div class="setting-group">
-                        <h3>🖼 배경 변경</h3>
-                        <div class="theme-buttons">
-                            <button onclick="changeBg('bg-1')">새벽</button>
-                            <button onclick="changeBg('bg-2')">밤하늘</button>
-                            <button onclick="changeBg('bg-3')">숲속</button>
-                        </div>
-                        <p style="margin: 10px 0 5px; font-size: 0.8rem; color: #aaa;">내 이미지 업로드 (new)</p>
-                        <input type="file" id="bg-upload" accept="image/*" onchange="uploadBg(this)">
-                    </div>
-                    <div class="setting-group">
-                        <h3>✒️ 타이머 폰트 변경 (new)</h3>
-                        <select id="font-select" onchange="changeFont(this.value)">
-                            <option value="'Montserrat', sans-serif">기본 (Montserrat)</option>
-                            <option value="'Noto Sans KR', sans-serif">고딕 (Noto Sans)</option>
-                            <option value="'Gowun Batang', serif">명조 (고운바탕)</option>
-                            <option value="'Nanum Pen Script', cursive">손글씨 (나눔펜)</option>
-                        </select>
-                    </div>
+                <div class="setting-group">
+                    <h3>⚙️ 기타 옵션</h3>
+                    <label class="switch-label">
+                        <input type="checkbox" id="auto-start-toggle"> 다음 세션 자동 시작
+                    </label>
                 </div>
+            </div>
 
-                <div id="stats" class="tab-content hidden">
-                    <div class="setting-group">
-                        <h3>📍 오늘 총 학습 시간 (new)</h3>
-                        <p id="today-total-display" style="font-size: 1.5rem; font-weight: 700;">0분</p>
+            <div id="theme" class="tab-content hidden">
+                <div class="setting-group">
+                    <h3>🎨 배경 변경</h3>
+                    <div class="theme-buttons">
+                        <button onclick="changeBg('bg-1')">새벽</button>
+                        <button onclick="changeBg('bg-2')">밤하늘</button>
+                        <button onclick="changeBg('bg-3')">숲속</button>
                     </div>
-                    <div class="setting-group">
-                        <h3>📊 최근 7일 학습 통계</h3>
+                    <p style="margin: 15px 0 5px; font-size: 0.85rem; color: #aaa;">내 이미지 업로드</p>
+                    <input type="file" id="bg-upload" accept="image/*" onchange="uploadBg(this)" class="custom-file-input">
+                </div>
+                <div class="setting-group">
+                    <h3>✒️ 타이머 폰트 변경</h3>
+                    <select id="font-select" onchange="changeFont(this.value)" class="full-select">
+                        <option value="'Montserrat', sans-serif">기본 (Montserrat)</option>
+                        <option value="'Noto Sans KR', sans-serif">고딕 (Noto Sans)</option>
+                        <option value="'Gowun Batang', serif">명조 (고운바탕)</option>
+                        <option value="'Nanum Pen Script', cursive">손글씨 (나눔펜)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="stats" class="tab-content hidden">
+                <div class="setting-group">
+                    <h3>📍 오늘 총 학습 시간</h3>
+                    <p id="today-total-display" style="font-size: 2rem; font-weight: 700; color: #4CAF50;">0분</p>
+                </div>
+                <div class="setting-group">
+                    <h3>📊 최근 7일 학습 통계</h3>
+                    <div class="chart-container">
                         <canvas id="statsChart"></canvas>
                     </div>
                 </div>
             </div>
-            <button class="save-btn" onclick="saveSettings()">저장 및 적용</button>
         </div>
+        <button class="save-btn" onclick="saveSettings()">저장 및 적용</button>
     </div>
+</div>
 
     <script src="script.js"></script>
 </body>
 </html>
+
