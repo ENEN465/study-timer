@@ -11,9 +11,9 @@
     font-display: swap;
 }
 @font-face {
-    font-family: 'GMarketSans';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
-    font-weight: 500;
+    font-family: 'Yidstreet';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/YdestreetB.woff2') format('woff2');
+    font-weight: 700;
     font-display: swap;
 }
 
@@ -71,7 +71,7 @@ body.bg-4 { background-image: url('https://images.unsplash.com/photo-14735800443
     margin: 0;
     padding: 0;
     display: inline-block;
-    height: 200px;
+    height: 160px;
     margin: 10px 0;
     width: 450px;      /* 폰트가 바뀌어도 이 너비 안에 갇히게 됨 */
     text-align: center; /* 고정된 너비 안에서 정가운데 배치 */
@@ -226,6 +226,7 @@ body.bg-4 { background-image: url('https://images.unsplash.com/photo-14735800443
     width: 100%; padding: 15px; border-radius: 15px; border: none;
     background: white; color: black; font-weight: 700; cursor: pointer; margin-top: 10px;
 }
+
 
 
 
