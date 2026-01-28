@@ -45,14 +45,53 @@ body.bg-3 { background-image: url('https://images.unsplash.com/photo-14419742315
     border-radius: 8px; width: 60px; margin-left: 10px;
 }
 
-.theme-buttons button {
-    background: #333; border: none; color: white; padding: 8px 15px;
-    margin-right: 5px; border-radius: 10px; cursor: pointer;
+/* 버튼 컨테이너 */
+.main-controls {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
-.save-btn {
-    width: 100%; background: white; color: black; border: none;
-    padding: 15px; border-radius: 15px; font-weight: 700; cursor: pointer;
+/* 기본 Flocus 스타일 버튼 */
+.flocus-btn {
+    background: rgba(255, 255, 255, 0.1); /* 아주 투명한 배경 */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 14px 45px;
+    border-radius: 50px; /* 완전 둥근 형태 */
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.15em; /* 자간을 넓혀 고급스럽게 */
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* 부드러운 움직임 */
+    outline: none;
 }
 
+/* 마우스를 올렸을 때 (Hover) */
+.flocus-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px); /* 살짝 떠오르는 효과 */
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* 클릭했을 때 (Active) */
+.flocus-btn:active {
+    transform: translateY(0);
+}
+
+/* 보조 버튼 (RESET 등) - 조금 더 차분하게 */
+.flocus-btn.secondary {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.flocus-btn.secondary:hover {
+    color: white;
+    border-color: rgba(255, 255, 255, 0.4);
+}
 .switch-label { cursor: pointer; display: flex; align-items: center; gap: 10px; }
+
