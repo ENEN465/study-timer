@@ -5,7 +5,7 @@ body {
     background-size: cover; background-position: center; transition: 0.5s; color: white;
     overflow: hidden;
 }
-body.bg-1 { background-image: url('https://images.unsplash.com/photo-1464626663754-2bec1e604808?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGNsb3ZlcnxlbnwwfDB8MHx8fDI%3D'); }
+body.bg-1 { background-image: url('https://unsplash.com/ko/%EC%82%AC%EC%A7%84/%EB%82%AE-%EB%8F%99%EC%95%88%EC%9D%98-%EB%85%B9%EC%83%89-%EC%8B%9D%EB%AC%BC-_583eiIT_84'); }
 body.bg-2 { background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=2070'); }
 body.bg-3 { background-image: url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2070'); }
 
@@ -38,9 +38,87 @@ body.bg-3 { background-image: url('https://images.unsplash.com/photo-14419742315
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0,0,0,0.7); display: flex; justify-content: center; align-items: center; z-index: 1000;
 }
+/* 설정창 높이 고정 및 우측 상단 닫기 버튼 */
 .modal-content {
-    background: #1a1a1a; border-radius: 25px; width: 90%; max-width: 450px;
-    padding: 25px; color: white;
+    background: #1a1a1a;
+    border-radius: 25px;
+    width: 90%;
+    max-width: 420px;
+    height: 580px; /* 모든 탭에서 크기 동일하게 고정 */
+    padding: 30px;
+    color: white;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: center; /* 제목 중앙 */
+    align-items: center;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+/* 창 우측 상단 닫기 버튼 */
+.close-top-btn {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    background: none;
+    border: none;
+    color: #777;
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.close-top-btn:hover { color: white; }
+
+/* 탭 내부 영역 고정 */
+.modal-body {
+    flex-grow: 1;
+    overflow-y: auto; /* 내용이 많아지면 내부 스크롤 */
+    margin-bottom: 20px;
+}
+
+/* 모바일 줄바꿈 대응 시간 설정 */
+.input-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.input-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.input-item label { font-size: 0.9rem; color: #ccc; }
+.input-item input {
+    background: #333;
+    border: 1px solid #444;
+    color: white;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* 폰트 선택 박스 */
+.full-select {
+    width: 100%;
+    background: #333;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #444;
+}
+
+/* 통계 차트 크기 조절 */
+.chart-container {
+    height: 180px;
+    width: 100%;
 }
 .tab-menu { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 1px solid #333; }
 .tab-btn {
@@ -57,3 +135,4 @@ body.bg-3 { background-image: url('https://images.unsplash.com/photo-14419742315
     width: 100%; padding: 15px; border-radius: 15px; border: none;
     background: white; color: black; font-weight: 700; cursor: pointer; margin-top: 10px;
 }
+
