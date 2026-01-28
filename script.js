@@ -8,7 +8,7 @@ let settings = {
     font: "'Montserrat', sans-serif"
 };
 let timeLeft = settings.focusTime * 60;
-
+const alarmSound = new Audio('https://t1.daumcdn.net/cfile/tistory/99412B355B68B0362F?original');
 // 1. 탭 전환 기능
 function openTab(tabName) {
     document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
@@ -74,6 +74,7 @@ function pauseTimer() {
 function handleEnd() {
     clearInterval(timer);
     isRunning = false;
+    alarmSound.play().catch(e => console.log("소리 재생을 위해 화면 클릭이 필요합니다."));
     if (currentMode === 'FOCUS') {
         saveStudyData(settings.focusTime);
         currentMode = 'BREAK';
@@ -138,4 +139,5 @@ document.getElementById('reset-btn').addEventListener('click', () => {
     timeLeft = settings.focusTime * 60;
     updateDisplay();
 });
+
 
