@@ -34,11 +34,12 @@ function uploadBg(input) {
 }
 
 function changeBg(bgClass) {
-    document.getElementById('body-bg').className = bgClass;
-    document.getElementById('body-bg').style.backgroundImage = ''; // 업로드 이미지 해제
+    const body = document.getElementById('body-bg');
+    body.className = bgClass;
+    body.style.backgroundImage = ''; 
 }
 
-// 3. 폰트 변경 (new)
+// 3. 폰트 변경
 function changeFont(fontValue) {
     settings.font = fontValue;
     document.getElementById('timer-display').style.fontFamily = fontValue;
@@ -137,3 +138,4 @@ document.getElementById('reset-btn').addEventListener('click', () => {
     timeLeft = settings.focusTime * 60;
     updateDisplay();
 });
+
