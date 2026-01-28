@@ -6,7 +6,7 @@ body {
     overflow: hidden;
 }
 /* 배경 이미지*/
-body.bg-1 { background-image: url('https://images.unsplash.com/photo-1560023348-7359966d997d?q=80&w=2070'); }
+body.bg-1 { background-image: url('https://raw.githubusercontent.com/Aceship/Arknight-Images/main/avg/backgrounds/26_g5_laterano_chapelout.png'); }
 body.bg-2 { background-image: url('https://raw.githubusercontent.com/Aceship/Arknight-Images/main/avg/images/35_i08.png'); }
 body.bg-3 { background-image: url('https://raw.githubusercontent.com/Aceship/Arknight-Images/main/avg/images/pic_rogue_1_2.png'); }
 body.bg-4 { background-image: url('https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?q=80&w=2070'); }
@@ -173,6 +173,7 @@ body.bg-4 { background-image: url('https://images.unsplash.com/photo-14735800443
     width: 100%; padding: 15px; border-radius: 15px; border: none;
     background: white; color: black; font-weight: 700; cursor: pointer; margin-top: 10px;
 }
+
 
 
 
