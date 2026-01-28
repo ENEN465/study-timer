@@ -1,45 +1,54 @@
 let timer;
 let isRunning = false;
-let currentMode = 'FOCUS'; // 'FOCUS' or 'BREAK'
-
-// 기본 설정값
+let currentMode = 'FOCUS';
 let settings = {
     focusTime: 25,
     breakTime: 5,
     autoStart: false,
-    currentBg: 1
+    font: "'Montserrat', sans-serif"
 };
-
 let timeLeft = settings.focusTime * 60;
 
-// 1. 설정 모달 토글
+// 1. 탭 전환 기능
+function openTab(tabName) {
+    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.getElementById(tabName).classList.remove('hidden');
+    event.currentTarget.classList.add('active');
+    if(tabName === 'stats') updateStatsView();
+}
+
 function toggleSettings(show) {
-    const modal = document.getElementById('settings-modal');
-    modal.classList.toggle('hidden', !show);
-    if(show) renderChart();
+    document.getElementById('settings-modal').classList.toggle('hidden', !show);
 }
 
-// 2. 설정 저장 및 적용
-function saveSettings() {
-    settings.focusTime = parseInt(document.getElementById('focus-input').value);
-    settings.breakTime = parseInt(document.getElementById('break-input').value);
-    settings.autoStart = document.getElementById('auto-start-toggle').checked;
-    
-    // 타이머가 멈춰있을 때만 시간 즉시 반영
-    if (!isRunning) {
-        resetTimer();
+// 2. 배경 이미지 업로드 (new)
+function uploadBg(input) {
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('body-bg').style.backgroundImage = `url('${e.target.result}')`;
+        };
+        reader.readAsDataURL(input.files[0]);
     }
-    toggleSettings(false);
 }
 
-// 3. 타이머 제어
+function changeBg(bgClass) {
+    document.getElementById('body-bg').className = bgClass;
+    document.getElementById('body-bg').style.backgroundImage = ''; // 업로드 이미지 해제
+}
+
+// 3. 폰트 변경 (new)
+function changeFont(fontValue) {
+    settings.font = fontValue;
+    document.getElementById('timer-display').style.fontFamily = fontValue;
+}
+
+// 4. 타이머 로직
 const startBtn = document.getElementById('start-btn');
 startBtn.addEventListener('click', () => {
-    if (!isRunning) {
-        startTimer();
-    } else {
-        pauseTimer();
-    }
+    if (!isRunning) startTimer();
+    else pauseTimer();
 });
 
 function startTimer() {
@@ -61,19 +70,9 @@ function pauseTimer() {
     clearInterval(timer);
 }
 
-function resetTimer() {
-    pauseTimer();
-    timeLeft = (currentMode === 'FOCUS' ? settings.focusTime : settings.breakTime) * 60;
-    updateDisplay();
-}
-
-document.getElementById('reset-btn').addEventListener('click', resetTimer);
-
-// 4. 세션 종료 처리 (자동 다음 세션 포함)
 function handleEnd() {
     clearInterval(timer);
     isRunning = false;
-    
     if (currentMode === 'FOCUS') {
         saveStudyData(settings.focusTime);
         currentMode = 'BREAK';
@@ -82,52 +81,59 @@ function handleEnd() {
         currentMode = 'FOCUS';
         timeLeft = settings.focusTime * 60;
     }
-    
     document.getElementById('current-mode').textContent = currentMode;
     updateDisplay();
-
-    // 자동 시작 옵션 체크
-    if (settings.autoStart) {
-        startTimer();
-    } else {
-        startBtn.textContent = "START";
-    }
+    if (settings.autoStart) startTimer();
 }
 
 function updateDisplay() {
     const mins = Math.floor(timeLeft / 60);
     const secs = timeLeft % 60;
-    document.getElementById('timer-display').textContent = 
-        `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    document.getElementById('timer-display').textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
 }
 
-// 5. 배경 변경
-function changeBg(num) {
-    settings.currentBg = num;
-    document.body.className = `bg-${num}`;
+function saveSettings() {
+    settings.focusTime = parseInt(document.getElementById('focus-input').value);
+    settings.breakTime = parseInt(document.getElementById('break-input').value);
+    settings.autoStart = document.getElementById('auto-start-toggle').checked;
+    if(!isRunning) {
+        timeLeft = (currentMode === 'FOCUS' ? settings.focusTime : settings.breakTime) * 60;
+        updateDisplay();
+    }
+    toggleSettings(false);
 }
 
-// 6. 데이터 저장 및 차트 (기존 로직 유지)
+// 5. 통계 로직 (오늘 총 시간 포함 - new)
 function saveStudyData(mins) {
     const today = new Date().toLocaleDateString();
-    let data = JSON.parse(localStorage.getItem('study-data') || '{}');
+    let data = JSON.parse(localStorage.getItem('wish-luck-stats') || '{}');
     data[today] = (data[today] || 0) + mins;
-    localStorage.setItem('study-data', JSON.stringify(data));
+    localStorage.setItem('wish-luck-stats', JSON.stringify(data));
 }
 
-function renderChart() {
+function updateStatsView() {
+    const data = JSON.parse(localStorage.getItem('wish-luck-stats') || '{}');
+    const today = new Date().toLocaleDateString();
+    const todayTime = data[today] || 0;
+    document.getElementById('today-total-display').textContent = `${todayTime}분`;
+    renderChart(data);
+}
+
+function renderChart(data) {
     const ctx = document.getElementById('statsChart').getContext('2d');
-    const data = JSON.parse(localStorage.getItem('study-data') || '{}');
     if(window.myChart) window.myChart.destroy();
     window.myChart = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: Object.keys(data).slice(-7),
-            datasets: [{ label: '분', data: Object.values(data).slice(-7), backgroundColor: 'white' }]
+            datasets: [{ label: '학습 시간(분)', data: Object.values(data).slice(-7), backgroundColor: 'rgba(255,255,255,0.7)' }]
         },
-        options: { scales: { y: { beginAtZero: true } }, plugins: { legend: { display: false } } }
+        options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { color: 'white' } }, x: { ticks: { color: 'white' } } } }
     });
 }
 
-// 초기 실행
-updateDisplay();
+document.getElementById('reset-btn').addEventListener('click', () => {
+    pauseTimer();
+    timeLeft = settings.focusTime * 60;
+    updateDisplay();
+});
