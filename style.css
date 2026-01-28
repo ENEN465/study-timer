@@ -72,7 +72,7 @@ body.bg-3 { background-image: url('https://images.unsplash.com/photo-14419742315
 
 /* 마우스를 올렸을 때 (Hover) */
 .flocus-btn:hover {
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(134, 204, 135, 0.25);
     border-color: rgba(255, 255, 255, 0.5);
 }
 
@@ -83,15 +83,26 @@ body.bg-3 { background-image: url('https://images.unsplash.com/photo-14419742315
 
 /* 보조 버튼 (RESET 등) - 조금 더 차분하게 */
 .flocus-btn.secondary {
-    background: transparent;
-    border: 1px solid rgba(134, 204, 135, 0.2);
-    color: rgba(255, 255, 255, 0.6);
+   background: rgba(255, 255, 255, 0.1); /* 아주 투명한 배경 */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 14px 45px;
+    border-radius: 50px; /* 완전 둥근 형태 */
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.15em; /* 자간을 넓혀 고급스럽게 */
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* 부드러운 움직임 */
+    outline: none;
 }
 
 .flocus-btn.secondary:hover {
-    color: white;
+    background: rgba(134, 204, 135, 0.25);
     border-color: rgba(255, 255, 255, 0.4);
 }
 .switch-label { cursor: pointer; display: flex; align-items: center; gap: 10px; }
+
 
 
