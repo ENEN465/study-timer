@@ -1,7 +1,7 @@
 @font-face {
-    font-family: 'PyeongchangPeace';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/PyeongChangPeace-Bold.woff2') format('woff2');
-    font-weight: 700;
+    font-family: 'Rix';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2102-01@1.0/RixYeoljeongdo_Regular.woff') format('woff');
+    font-weight: normal;
     font-display: swap;
 }
 @font-face {
@@ -33,7 +33,7 @@
 
 /* 기본 배경 및 폰트 */
 body {
-    margin: 0; font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    margin: 0; font-family: 'Montserrat', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
     height: 100vh; display: flex; justify-content: center; align-items: center;
     background-size: cover; background-position: center; transition: 0.5s; color: white;
     overflow: hidden;
@@ -56,8 +56,25 @@ body.bg-4 { background-image: url('https://images.unsplash.com/photo-14735800443
     background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(15px);
     padding: 60px; border-radius: 40px; text-align: center; width: 90%; max-width: 500px;
 }
-.timer-main h1 { font-size: 8rem; font-weight: 500; margin: 20px 0; }
+.timer-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 10rem; /* 타이머 높이 공간 확보 */
+    margin: 10px 0;
+}
 
+/* 2. 타이머 숫자: 너비를 고정해서 좌우 흔들림 방지 */
+#timer-display {
+    font-size: 8rem;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    width: 450px;      /* 폰트가 바뀌어도 이 너비 안에 갇히게 됨 */
+    text-align: center; /* 고정된 너비 안에서 정가운데 배치 */
+    font-variant-numeric: tabular-nums; /* 숫자 폭을 일정하게 고정 */
+}
 /* Flocus 스타일 버튼 */
 .main-controls { margin-top: 40px; display: flex; justify-content: center; gap: 20px; }
 .flocus-btn {
@@ -206,6 +223,7 @@ body.bg-4 { background-image: url('https://images.unsplash.com/photo-14735800443
     width: 100%; padding: 15px; border-radius: 15px; border: none;
     background: white; color: black; font-weight: 700; cursor: pointer; margin-top: 10px;
 }
+
 
 
 
