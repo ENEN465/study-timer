@@ -1,6 +1,6 @@
 {
-  "name": "Study Timer Pro",
-  "short_name": "StudyTimer",
+  "name": "Clover Timer",
+  "short_name": "Clover Timer",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -8,8 +8,10 @@
   "icons": [
     {
       "src": "icon.png",
-      "sizes": "192x192",
+      "sizes": "512x512",
       "type": "image/png"
+      "purpose": "maskable"
     }
   ]
+
 }
