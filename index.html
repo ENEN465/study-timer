@@ -6,43 +6,64 @@
     <title>Wish_You_Luck🍀</title>
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="bg-1">
-    <div class="glass-container">
-        <div class="mode-selector">
-            <button onclick="changeMode(25, 'Pomodoro', this)" class="active">Pomodoro</button>
-            <button onclick="changeMode(5, 'Short Break', this)">Short Break</button>
-            <button onclick="changeMode(15, 'Long Break', this)">Long Break</button>
-        </div>
+    <button id="open-settings" onclick="toggleSettings(true)">⚙️ Settings</button>
 
+    <div class="glass-container">
+        <div class="mode-display" id="current-mode">FOCUS</div>
         <div class="timer-main">
             <h1 id="timer-display">25:00</h1>
         </div>
-
         <div class="main-controls">
             <button id="start-btn">START</button>
             <button id="reset-btn">RESET</button>
         </div>
     </div>
 
-    <div class="bottom-nav">
-        <button onclick="nextBackground()">Background</button>
-        <button onclick="toggleStats()">Record</button>
-    </div>
+    <div id="settings-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Settings</h2>
+                <button class="close-btn" onclick="toggleSettings(false)">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="setting-group">
+                    <h3>⏱ 시간 설정 (분)</h3>
+                    <div class="input-grid">
+                        <label>집중: <input type="number" id="focus-input" value="25"></label>
+                        <label>휴식: <input type="number" id="break-input" value="5"></label>
+                    </div>
+                </div>
 
-    <div id="stats-overlay" class="overlay hidden" onclick="toggleStats()">
-        <div class="modal" onclick="event.stopPropagation()">
-            <h2>Study Statistics</h2>
-            <canvas id="myChart"></canvas>
-            <button onclick="toggleStats()" class="close-btn">닫기</button>
+                <div class="setting-group">
+                    <h3>🖼 배경 테마</h3>
+                    <div class="theme-buttons">
+                        <button onclick="changeBg(1)">새벽</button>
+                        <button onclick="changeBg(2)">밤하늘</button>
+                        <button onclick="changeBg(3)">숲속</button>
+                    </div>
+                </div>
+
+                <div class="setting-group">
+                    <h3>⚙️ 기타 옵션</h3>
+                    <label class="switch-label">
+                        <input type="checkbox" id="auto-start-toggle"> 다음 세션 자동 시작
+                    </label>
+                </div>
+
+                <div class="setting-group">
+                    <h3>📊 학습 통계 (최근 7일)</h3>
+                    <canvas id="statsChart"></canvas>
+                </div>
+            </div>
+            <button class="save-btn" onclick="saveSettings()">저장 및 적용</button>
         </div>
     </div>
 
     <script src="script.js"></script>
 </body>
 </html>
-
