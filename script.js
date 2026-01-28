@@ -8,7 +8,7 @@ let settings = {
     font: "'Montserrat', sans-serif"
 };
 let timeLeft = settings.focusTime * 60;
-const alarmSound = new Audio('https://t1.daumcdn.net/cfile/tistory/99412B355B68B0362F?original');
+const alarmSound = new Audio('https://cdn.pixabay.com/audio/2021/08/04/audio_0625c1539c.mp3');
 // 1. 탭 전환 기능
 function openTab(tabName) {
     document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
@@ -139,5 +139,6 @@ document.getElementById('reset-btn').addEventListener('click', () => {
     timeLeft = settings.focusTime * 60;
     updateDisplay();
 });
+
 
 
