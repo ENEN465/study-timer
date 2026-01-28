@@ -1,26 +1,20 @@
 {
-  "name": "Clover Timer",
-  "short_name": "Clover Timer",
-  "start_url": "./index.html",
+  "name": "Wish You Luck",
+  "short_name": "WishLuck",
+  "start_url": ".",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#79C975",
+  "background_color": "#1a1a1a",
+  "theme_color": "#1a1a1a",
   "icons": [
     {
       "src": "https://cdn-icons-png.flaticon.com/512/3125/3125848.png",
-      "sizes": "512x512",
-      "type": "image/png",
+      "sizes": "192x192",
+      "type": "image/png"
     },
     {
       "src": "https://cdn-icons-png.flaticon.com/512/3125/3125848.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable" 
+      "type": "image/png"
     }
   ]
 }
-
-
-
-
-
