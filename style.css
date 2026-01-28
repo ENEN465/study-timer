@@ -44,7 +44,7 @@ body.bg-4 { background-image: url('https://images.unsplash.com/photo-14735800443
 }
 
 .flocus-btn:hover {
-    background: rgba(0, 0, 0, 0.8); /* 배경을 검정색으로 */
+    background: rgba(49, 49, 49, 0.8); /* 배경을 검정색으로 */
     color: white; /* 글자는 계속 흰색 유지 */
     border-color: rgba(255, 255, 255, 0.5);
 }
@@ -66,7 +66,7 @@ body.bg-4 { background-image: url('https://images.unsplash.com/photo-14735800443
 }
 
 .flocus-btn.secondary:hover {
-    background: rgba(0, 0, 0, 0.8); /* 배경을 검정색으로 */
+    background: rgba(49, 49, 49, 0.8); /* 배경을 검정색으로 */
     color: white; /* 글자는 계속 흰색 유지 */
     border-color: rgba(255, 255, 255, 0.5);
 }
@@ -173,6 +173,7 @@ body.bg-4 { background-image: url('https://images.unsplash.com/photo-14735800443
     width: 100%; padding: 15px; border-radius: 15px; border: none;
     background: white; color: black; font-weight: 700; cursor: pointer; margin-top: 10px;
 }
+
 
 
 
