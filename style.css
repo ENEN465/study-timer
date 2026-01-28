@@ -56,7 +56,7 @@ body.bg-4 { background-image: url('https://images.unsplash.com/photo-14735800443
     background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(15px);
     padding: 60px; border-radius: 40px; text-align: center; width: 90%; max-width: 500px;
 }
-.timer-main h1 { font-size: 8rem; font-weight: 200; margin: 20px 0; }
+.timer-main h1 { font-size: 8rem; font-weight: 500; margin: 20px 0; }
 
 /* Flocus 스타일 버튼 */
 .main-controls { margin-top: 40px; display: flex; justify-content: center; gap: 20px; }
@@ -206,6 +206,7 @@ body.bg-4 { background-image: url('https://images.unsplash.com/photo-14735800443
     width: 100%; padding: 15px; border-radius: 15px; border: none;
     background: white; color: black; font-weight: 700; cursor: pointer; margin-top: 10px;
 }
+
 
 
 
