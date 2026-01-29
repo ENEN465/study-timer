@@ -2,12 +2,33 @@ let timer;
 let isRunning = false;
 let currentMode = 'FOCUS';
 let settings = {
-    focusTime: 25,
+    focusTime: 30,
     breakTime: 5,
     autoStart: true,
     font: "'Montserrat', sans-serif"
 };
 let timeLeft = settings.focusTime * 60;
+let wakeLock = null;
+
+//화면꺼짐방지
+const requestWakeLock = async () => {
+    try {
+        if ('wakeLock' in navigator) {
+            wakeLock = await navigator.wakeLock.request('screen');
+            console.log('화면 꺼짐 방지on');
+        }
+    } catch (err) {
+        console.error(`${err.name}, ${err.message}`);
+    }
+};
+//이친구 이벤트리스너
+document.addEventListener('visibilitychange', async () => {
+    if (wakeLock !== null && document.visibilityState === 'visible') {
+        await requestWakeLock();
+    }
+});
+
+//알람음함수
 const alarmSound = new Audio('https://cdn.pixabay.com/audio/2021/08/04/audio_0625c1539c.mp3');
 // 1. 탭 전환 기능
 function openTab(tabName) {
@@ -22,7 +43,7 @@ function toggleSettings(show) {
     document.getElementById('settings-modal').classList.toggle('hidden', !show);
 }
 
-// 2. 배경 이미지 업로드 (new)
+// 2. 배경 이미지 업로드
 function uploadBg(input) {
     if (input.files && input.files[0]) {
         const reader = new FileReader();
@@ -54,6 +75,7 @@ startBtn.addEventListener('click', () => {
 
 function startTimer() {
     isRunning = true;
+    requestWakeLock();
     startBtn.textContent = "PAUSE";
     timer = setInterval(() => {
         if (timeLeft > 0) {
@@ -105,7 +127,7 @@ function saveSettings() {
     toggleSettings(false);
 }
 
-// 5. 통계 로직 (오늘 총 시간 포함 - new)
+// 5. 통계 로직
 function saveStudyData(mins) {
     const today = new Date().toLocaleDateString();
     let data = JSON.parse(localStorage.getItem('wish-luck-stats') || '{}');
@@ -142,12 +164,12 @@ document.getElementById('reset-btn').addEventListener('click', () => {
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    // './sw.js'가 아니라 'sw.js'로 호출하여 상대 경로 이슈를 방지합니다.
     navigator.serviceWorker.register('sw.js')
       .then(reg => console.log('서비스 워커 등록 성공! 범위:', reg.scope))
       .catch(err => console.log('서비스 워커 등록 실패:', err));
   });
 }
+
 
 
 
