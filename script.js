@@ -1,17 +1,14 @@
-let timer;
-let isRunning = false;
-let currentMode = 'FOCUS';
 let settings = {
     focusTime: 30,
     breakTime: 5,
     autoStart: true,
     font: "'Montserrat', sans-serif"
 };
-let timeLeft = settings.focusTime * 60;
-let timer = null;
+let timer null;;
 let isRunning = false;
 let currentMode = 'FOCUS';
 let wakeLock = null;
+let timeLeft = settings.focusTime * 60;
 
 //화면꺼짐방지
 const requestWakeLock = async () => {
@@ -174,6 +171,7 @@ if ('serviceWorker' in navigator) {
 }
 
 updateDisplay();
+
 
 
 
