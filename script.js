@@ -8,6 +8,9 @@ let settings = {
     font: "'Montserrat', sans-serif"
 };
 let timeLeft = settings.focusTime * 60;
+let timer = null;
+let isRunning = false;
+let currentMode = 'FOCUS';
 let wakeLock = null;
 
 //화면꺼짐방지
@@ -170,6 +173,7 @@ if ('serviceWorker' in navigator) {
   });
 }
 
+updateDisplay();
 
 
 
