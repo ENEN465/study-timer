@@ -1,6 +1,6 @@
 {
-  "name": "Rhodes",
-  "short_name": "Rhodes",
+  "name": "Rhodes Timer",
+  "short_name": "Rhodes Timer",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#1a1a1a",
@@ -18,5 +18,6 @@
     }
   ]
 }
+
 
 
