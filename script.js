@@ -170,7 +170,6 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-updateDisplay();
 
 
 
